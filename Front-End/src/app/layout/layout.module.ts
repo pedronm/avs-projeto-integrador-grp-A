@@ -12,6 +12,10 @@ import { CalendarioComponent } from './calendario/calendario.component';
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+	AgendamentoComponent,
+    CalendarioComponent
   ]
 })
 export class LayoutModule { }
