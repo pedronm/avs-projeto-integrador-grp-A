@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AgendamentoComponent implements OnInit {
 
+  public clinicaSolicitante: string = 'CLN - BOTAFOGO | R. PRINCESA ISABEL, 850';
+
   constructor() { }
 
   ngOnInit() {

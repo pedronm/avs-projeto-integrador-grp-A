@@ -1,12 +1,39 @@
-<div class="container my-3">
-    <h3 class="txt-secondary px-2">Agendamento<hr></h3>
-    <div id="dv-cad-agendamento" 
-        class="col-5 px-2 py-2">
-        <app-calendario>
-        </app-calendario>
-    </div>
-    <div id="dv-frm-agendamento"
-         class="col-5">
 
+<div class="container my-1 border rounded p-5">
+    <h3>Novo Agendamento</h3>
+    <hr>
+    <form>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="slc-especialidades">Especialidade</label>
+                <select name="selectEspecialidades" id="slc-especialidades" class="form-control">
+                    <option *ngFor="let espec of especialidade" value="espec.id">{{espec.nome}}</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2"></div>
+            <div class="form-group col-md-4">
+                <label for="">Calendario</label>
+                <app-calendario></app-calendario>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="in-clinica">Clinica</label>
+                <input type="text" class="form-control" name="inClinica" id="in-clinica" [value]="clinicaSolicitante" disabled>
+            </div>           
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="slc-medico" >Medico</label>
+                <select id="slc-medico" class="form-control">
+                    <option *ngFor="let medico of medicos" value="{{medico.id}}">{{medico.nome}}</option>
+                </select>
+            </div>
+        </div>        
+    </form>
+    <div class="float-right">
+        <button class="btn btn-primary">Agendar</button>
+        <span class="mx-2"></span>
+        <button class="btn btn-warning">Cancelar</button>
     </div>
 </div>
