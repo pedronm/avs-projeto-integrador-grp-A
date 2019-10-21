@@ -10,10 +10,12 @@
                     <option *ngFor="let espec of especialidade" value="espec.id">{{espec.nome}}</option>
                 </select>
             </div>
-            <div class="form-group col-md-2"></div>
-            <div class="form-group col-md-4">
-                <label for="">Calendario</label>
-                <app-calendario></app-calendario>
+            <div class="form-group col-md-4"></div>
+            <div class="form-group col-md-2">
+                <label for="in-calendario">Calendario</label>
+                <input matInput id="in-calendario" class="form-control" [matDatepicker]="picker" placeholder="Escolha a Data">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>             
             </div>
         </div>
         <div class="form-row">

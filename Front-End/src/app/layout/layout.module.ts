@@ -1,21 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AgendamentoComponent } from './agendamento/agendamento.component';
-import { CalendarioComponent } from './calendario/calendario.component';
+import { 
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatInputModule,
+} from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
 @NgModule({
   declarations: [
     AgendamentoComponent,
-    CalendarioComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatDatepickerModule,
+    BrowserAnimationsModule
   ],
   exports: [
 	AgendamentoComponent,
-    CalendarioComponent
   ]
 })
 export class LayoutModule { }

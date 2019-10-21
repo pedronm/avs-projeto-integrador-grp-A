@@ -15,8 +15,8 @@ import { Component } from '@angular/core';
       </div>      
       <!--<router-outlet></router-outlet>-->
     </main>
-
-    <footer class=" fixed-bottom text-center">
+   
+    <footer class="text-center">
       Agendamento de Consultas V1.0.0
     </footer>
   `,

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-agendamento',
@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AgendamentoComponent implements OnInit {
 
+  public dataEscolhida: string = "";
   public clinicaSolicitante: string = 'CLN - BOTAFOGO | R. PRINCESA ISABEL, 850';
 
   constructor() { }
