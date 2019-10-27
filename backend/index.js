@@ -3,10 +3,10 @@ const errs = require('restify-errors');
 const knex = require('knex')({
     client: 'mysql',
     connection: {
-      host : '34.95.213.167',
-      user : 'root',
-      password : 'maximus',
-      database : 'projeto_integrador'
+      host : process.env.BDIP,
+      user : process.env.BDUSER,
+      password : process.env.BDPASS,
+      database : process.env.BDNAME
     }
 });
 
