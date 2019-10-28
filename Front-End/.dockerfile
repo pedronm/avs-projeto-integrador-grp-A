@@ -16,7 +16,7 @@ WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 
 # Instalar e 'cachear' as depêndencias do app
-COPY package.json /app/package.json
+COPY package.json /app/
 RUN npm install
 RUN npm install -g @angular/cli@8.3.5 --unsafe
 
