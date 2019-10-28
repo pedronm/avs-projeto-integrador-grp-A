@@ -21,12 +21,12 @@ RUN apt-get update && apt-get install -yq google-chrome-stable
 ENV PATH /app/node_modules/.bin:$PATH
 
 # Instalar e 'cachear' as depêndencias do app
-COPY package.json .
+COPY Front-End/package.json .
 RUN npm install
 RUN npm install -g @angular/cli@8.3.5 --unsafe
 
 # Adicionar o aplicativo
-COPY . ./
+COPY Front-End/. ./
 
 # Iniciar Aplicativo
 CMD ng serve --host 0.0.0.0
