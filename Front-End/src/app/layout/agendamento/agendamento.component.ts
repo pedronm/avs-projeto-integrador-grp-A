@@ -12,7 +12,7 @@ import { ESPECIALIDADES } from './mock.especialidade';
 export class AgendamentoComponent implements OnInit {
 
   public dataEscolhida: string = "";
-  public clinicaSolicitante: string = 'CLN - BOTAFOGO | R. PRINCESA ISABEL, 850';
+  public clinicaSolicitante: string = 'CLINICA - BOTAFOGO | R. PRINCESA ISABEL, 850';
   public medicos: Medico[] = MEDICOS;
   public especialidades: Especialidade[] = ESPECIALIDADES;
   constructor() { }
