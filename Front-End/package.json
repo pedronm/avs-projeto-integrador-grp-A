@@ -1,10 +1,10 @@
 {
   "name": "agendamento-consultas",
-  "version": "0.0.0",
+  "version": "1.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod --configuration=production ",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
