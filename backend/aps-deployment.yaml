@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aps
+spec:
+  selector:
+    matchLabels:
+      app: aps
+  template:
+    metadata:
+      labels:
+        app: aps
+    spec:
+      containers:
+      - name: aps-deployment
+        image: lohannadev/aps
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: aps-service
+spec:
+  selector:
+    app: aps
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: http
+
