@@ -11,7 +11,7 @@ export class ConsultaEspecialidadeService {
 
   private api: string = environment.apiUrlEsp;
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
   public listaEspecialidades(): Observable<any>{
     return of(ESPECIALIDADES);

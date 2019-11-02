@@ -12,7 +12,7 @@ export class ConsultaMedicoService{
 
   private api: string = environment.apiUrlMed;
 
-  constructor(private http: HttpClient ) { }
+  constructor( ) { }
   
   public recuperaListaMedicos(): Observable<any> {
     return of(MEDICOS);

@@ -9,5 +9,5 @@ export class AgendamentoService {
 
   private api: string = environment.apiUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 }
