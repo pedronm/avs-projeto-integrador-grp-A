@@ -9,6 +9,8 @@ import {
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule }    from '@angular/common/http';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { ListaAgendamentosComponent } from './lista-agendamentos/lista-agendamentos.component';
 
 
 
@@ -16,6 +18,7 @@ import { HttpClientModule }    from '@angular/common/http';
   declarations: [
     AgendamentoComponent,
 	AgendamentoService
+    ListaAgendamentosComponent,
   ],
   imports: [
     CommonModule,
@@ -24,6 +27,7 @@ import { HttpClientModule }    from '@angular/common/http';
     MatDatepickerModule,
     BrowserAnimationsModule,
 	HttpClientModule
+    NgxPaginationModule
   ],
   exports: [
 	AgendamentoComponent,

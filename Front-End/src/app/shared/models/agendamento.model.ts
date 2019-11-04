@@ -1,6 +1,8 @@
+
 export class Agendamento {
-    constructor(private data? : string,
-            private especialidade?: string,
-            private medico?: string,
-            private clinica?: string){}
+    constructor(public data? : string,
+		    public horario? : string,
+            public especialidade?: string,
+            public medico?: string,
+            public clinica?: string){}
 }
