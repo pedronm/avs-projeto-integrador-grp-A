@@ -1,0 +1,41 @@
+<table>
+    <thead>
+        <tr>
+            <th *ngFor="let elem of cabecalho">
+                {{elem}}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let agendamento of agendamentos | paginate: { id: 'paginator-agendamentos',
+                itemsPerPage: pageSize,
+                currentPage: p,
+                totalItems: total}">
+            <td>
+                {{agendamento.data}}
+            </td>
+            <td>
+                {{agendamento.especialidade}}
+            </td>
+            <td>
+                {{agendamento.medico}}
+            </td>
+            <td>
+                {{agendamento.clinica}}
+            </td>
+        </tr>
+    </tbody>
+</table>
+<pagination-controls
+                      id="paginator-agendamentos"
+                      (pageChange)="pageChanged($event)"
+                      maxSize="9"
+                      directionLinks="true"
+                      autoHide="true"
+                      responsive="true"
+                      previousLabel="Previous"
+                      nextLabel="Next"
+                      screenReaderPaginationLabel="Pagination"
+                      screenReaderPageLabel="page"
+                      screenReaderCurrentLabel="You're on page"
+></pagination-controls>

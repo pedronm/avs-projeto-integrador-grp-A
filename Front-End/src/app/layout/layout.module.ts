@@ -7,19 +7,23 @@ import {
   MatInputModule,
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { ListaAgendamentosComponent } from './lista-agendamentos/lista-agendamentos.component';
 
 
 
 @NgModule({
   declarations: [
     AgendamentoComponent,
+    ListaAgendamentosComponent,
   ],
   imports: [
     CommonModule,
     MatNativeDateModule,
     MatInputModule,
     MatDatepickerModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxPaginationModule
   ],
   exports: [
 	AgendamentoComponent,
