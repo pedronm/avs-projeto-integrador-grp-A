@@ -1,19 +1,23 @@
-<table>
+<table class="table">
     <thead>
         <tr>
-            <th *ngFor="let elem of cabecalho">
+            <th scope="col" *ngFor="let elem of cabecalho">
                 {{elem}}
             </th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let agendamento of agendamentos | paginate: { id: 'paginator-agendamentos',
+        <tr *ngFor="let agendamento of agendamentos | paginate: { 
+				id: 'paginator-agendamentos',
                 itemsPerPage: pageSize,
                 currentPage: p,
                 totalItems: total}">
-            <td>
+            <td scope="row" >
                 {{agendamento.data}}
             </td>
+			<td>
+				{{agendamento.horario}}
+			</td>
             <td>
                 {{agendamento.especialidade}}
             </td>
@@ -26,16 +30,14 @@
         </tr>
     </tbody>
 </table>
-<pagination-controls
+<pagination-controls  class="text-center"
+					 (pageChange)="p = $event" previousLabel="" nextLabel=""
                       id="paginator-agendamentos"
-                      (pageChange)="pageChanged($event)"
-                      maxSize="9"
+                      maxSize="3"
                       directionLinks="true"
                       autoHide="true"
                       responsive="true"
-                      previousLabel="Previous"
-                      nextLabel="Next"
-                      screenReaderPaginationLabel="Pagination"
-                      screenReaderPageLabel="page"
-                      screenReaderCurrentLabel="You're on page"
+                      screenReaderPaginationLabel="Paginação"
+                      screenReaderPageLabel="Pagina"
+                      screenReaderCurrentLabel="Você está na pagina."
 ></pagination-controls>

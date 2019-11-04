@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AGENDAMENTOS } from '../agendamento/mock.agendamento';
+import { Agendamento } from '../../shared/models/agendamento.model';
 
 @Component({
   selector: 'app-lista-agendamentos',
@@ -8,7 +10,8 @@ import { Component, OnInit } from '@angular/core';
 export class ListaAgendamentosComponent implements OnInit {
 
   public cabecalho: string[] = [];
-
+  public agendamentos: Agendamento[] = AGENDAMENTOS;
+  public pageSize = 3;
   constructor() { }
 
   ngOnInit() {
@@ -16,6 +19,6 @@ export class ListaAgendamentosComponent implements OnInit {
   }
 
   private montarTela(): void{
-    this.cabecalho = ['Data', 'Especialidade', 'Medico', 'Clinica'];
+    this.cabecalho = ['Data', 'Horario', 'Especialidade', 'Medico', 'Clinica'];
   }
 }
