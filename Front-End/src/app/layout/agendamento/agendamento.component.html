@@ -1,42 +1,99 @@
 
-<div class="container my-1 border rounded p-5">
-    <h3>Novo Agendamento</h3>
-    <hr>
-    <form>
+<div class="container my-1 border rounded p-5 ">
+    <div class="col-lg-12 col-sm-12">
+        <h3>Novo Agendamento<button class="btn float-right btn-outline-light" (click)="abrirModal()"><img [src]="urlIcoClinica"/></button></h3>
+        <hr>
+    </div>
+    <!-- Campos para pesquisa de Agendamentos possíveis -->
+    <div class="col-lg-12 col-sm-12">
+        <form>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="slc-especialidades">Especialidade</label>
-                <select name="selectEspecialidades" id="slc-especialidades" class="form-control">
-                    <option *ngFor="let espec of especialidades" value="espec.id">{{espec.nome}}</option>
-                </select>
+                <label for="find-especialidades">Especialidade</label>
+                <input name="nomeEspecialidade" id="find-especialidades" 
+                placeholder="Escreva a especialidade que deseja..." 
+                aria-label="Escreva a especialidade que deseja..."
+                      type="text" [value]="especialidade" class="form-control" />
             </div>
-            <div class="form-group col-md-2"></div>
-            <div class="form-group col-md-4">
-                <label for="in-calendario">Calendario</label>
-                <input matInput id="in-calendario" class="form-control" [matDatepicker]="picker" placeholder="Escolha a Data">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>             
+            <div class="form-group col-md-3">
+                <label for="in-date">Data</label>
+                <input type="date" class="form-control" [value]="dataEscolhida" id="in-date"/>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="in-hour">Hora</label>
+                <input type="time" class="form-control" [value]="horario" id="in-hour"/>
+                <!-- Componente do Datepicker
+                    <label for="in-calendario">Calendario</label>
+                    <input matInput id="in-calendario" class="form-control" [matDatepicker]="picker" placeholder="Escolha a Data">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                -->             
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="in-clinica">Clinica</label>
-                <input type="text" class="form-control" name="inClinica" id="in-clinica" [value]="clinicaSolicitante" disabled>
-            </div>           
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="slc-medico" >Medico</label>
-                <select id="slc-medico" class="form-control">
-                    <option *ngFor="let medico of medicos" value="{{medico.id}}">{{medico.nome}}</option>
-                </select>
+                <label for="find-medico" >Medico</label>
+                <input id="find-medico" class="form-control" [value]="medico" 
+                placeholder="Escreva o nome do médico que deseja..." 
+                aria-label="Escreva o nome do médico que deseja..."/>
             </div>
         </div>        
     </form>
-    <app-lista-agendamentos></app-lista-agendamentos>
-    <div class="float-right">
-        <button class="btn btn-primary">Agendar</button>
-        <span class="mx-2"></span>
-        <button class="btn btn-warning">Cancelar</button>
+    </div>
+
+    <!-- Tabela juntamente com a função de agendar. -->
+    <div class="col-lg-12 col-sm-12">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col" *ngFor="let elem of cabecalho">
+                    {{elem}}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let agendamento of agendamentos | paginate: { 
+                    id: 'paginator-agendamentos',
+                    itemsPerPage: qtdItens,
+                    currentPage: p,
+                    totalItems: total}">
+                <td scope="row" >
+                    {{agendamento.data}}
+                </td>
+                <td>
+                    {{agendamento.horario}}
+                </td>
+                <td>
+                    {{agendamento.especialidade}}
+                </td>
+                <td>
+                    {{agendamento.medico}}
+                </td>
+                <td>
+                    {{agendamento.crm}}
+                </td>
+                <td>
+                    {{agendamento.clinica}}
+                </td>
+                <td>
+                    <button class="btn btn-primary">
+                        Agendar
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+        </table>
+        <pagination-controls  class="text-center"
+                                (pageChange)="p = $event" previousLabel="" nextLabel=""
+                                id="paginator-agendamentos"
+                                maxSize="3"
+                                directionLinks="true"
+                                autoHide="true"
+                                responsive="true"
+                                screenReaderPaginationLabel="Paginação"
+                                screenReaderPageLabel="Pagina"
+                                screenReaderCurrentLabel="Você está na pagina."
+        ></pagination-controls>
+                
     </div>
 </div>
