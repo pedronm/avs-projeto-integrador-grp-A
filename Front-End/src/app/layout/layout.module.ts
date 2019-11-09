@@ -21,7 +21,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     MatInputModule,
     MatDatepickerModule,
     BrowserAnimationsModule,
-	HttpClientModule
+	HttpClientModule,
     NgxPaginationModule
   ],
   exports: [
