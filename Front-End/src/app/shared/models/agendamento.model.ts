@@ -4,5 +4,6 @@ export class Agendamento {
 		    public horario? : string,
             public especialidade?: string,
             public medico?: string,
+            public crm?: string,
             public clinica?: string){}
 }
