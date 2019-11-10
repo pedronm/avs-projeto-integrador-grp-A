@@ -5,6 +5,7 @@ import { Especialidade } from 'src/app/shared/models/especialidade.model';
 import { ESPECIALIDADES } from './mock.especialidade';
 import { Agendamento } from 'src/app/shared/models/agendamento.model';
 import { AGENDAMENTOS } from './mock.agendamento';
+const $: any;
 
 @Component({
   selector: 'app-agendamento',

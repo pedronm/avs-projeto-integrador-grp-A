@@ -10,10 +10,13 @@ import {
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule }    from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { FormsModule } from '@angular/forms';
+import { FiltraAgendamentoPipe } from './agendamento/filtra.agendamento.pipe';
 
 @NgModule({
   declarations: [
     AgendamentoComponent,
+    FiltraAgendamentoPipe
   ],
   imports: [
     CommonModule,
@@ -21,8 +24,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
     MatInputModule,
     MatDatepickerModule,
     BrowserAnimationsModule,
-	HttpClientModule,
-    NgxPaginationModule
+	  HttpClientModule,
+    NgxPaginationModule,
+    FormsModule,
   ],
   exports: [
 	AgendamentoComponent,

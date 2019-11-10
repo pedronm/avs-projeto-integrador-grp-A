@@ -10,18 +10,20 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="find-especialidades">Especialidade</label>
-                <input name="nomeEspecialidade" id="find-especialidades" 
-                placeholder="Escreva a especialidade que deseja..." 
-                aria-label="Escreva a especialidade que deseja..."
-                      type="text" [value]="especialidade" class="form-control" />
+                <input [(ngModel)]="especialidade" 
+                      name="nomeEspecialidade" id="find-especialidades" 
+                      placeholder="Escreva a especialidade que deseja..." 
+                      aria-label="Escreva a especialidade que deseja..."
+                      type="text" class="form-control" />
+                
             </div>
             <div class="form-group col-md-3">
                 <label for="in-date">Data</label>
-                <input type="date" class="form-control" [value]="dataEscolhida" id="in-date"/>
+                <input type="date" class="form-control" [(ngModel)]="dataEscolhida" name="data" id="in-date"/>
             </div>
             <div class="form-group col-md-2">
                 <label for="in-hour">Hora</label>
-                <input type="time" class="form-control" [value]="horario" id="in-hour"/>
+                <input type="time" class="form-control" [(ngModel)]="horario" name="horario" id="in-hour"/>
                 <!-- Componente do Datepicker
                     <label for="in-calendario">Calendario</label>
                     <input matInput id="in-calendario" class="form-control" [matDatepicker]="picker" placeholder="Escolha a Data">
@@ -33,7 +35,10 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="find-medico" >Medico</label>
-                <input id="find-medico" class="form-control" [value]="medico" 
+                <input id="find-medico" 
+                [(ngModel)]="medico"
+                class="form-control"       
+                name="medico"  
                 placeholder="Escreva o nome do médico que deseja..." 
                 aria-label="Escreva o nome do médico que deseja..."/>
             </div>
@@ -52,11 +57,14 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let agendamento of agendamentos | paginate: { 
-                    id: 'paginator-agendamentos',
-                    itemsPerPage: qtdItens,
-                    currentPage: p,
-                    totalItems: total}">
+            <tr *ngFor="let agendamento of agendamentos 
+                    | paginate: { 
+                        id: 'paginator-agendamentos',
+                        itemsPerPage: qtdItens,
+                        currentPage: p,
+                        totalItems: total} 
+                    | filtroAgendamento : medico 
+                    | filtroAgendamento : especialidade ">
                 <td scope="row" >
                     {{agendamento.data}}
                 </td>
