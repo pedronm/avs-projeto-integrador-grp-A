@@ -1,11 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Medico } from 'src/app/shared/models/medico.model';
-import { MEDICOS } from './mock.medico';
-import { Especialidade } from 'src/app/shared/models/especialidade.model';
-import { ESPECIALIDADES } from './mock.especialidade';
+import { Component, OnInit } from '@angular/core';
 import { Agendamento } from 'src/app/shared/models/agendamento.model';
 import { AGENDAMENTOS } from './mock.agendamento';
-const $: any;
+
+declare var $: any;
 
 @Component({
   selector: 'app-agendamento',
@@ -18,7 +15,7 @@ export class AgendamentoComponent implements OnInit {
 
   public dataEscolhida: string = "2003-07-21";
   public horario: string = "09:00:00";
-  public qtdItens = 3;
+  public qtdItens = 0;
 
   public cabecalho: string[] = ['Data', 'Horario', 'Especialidade', 'Medico', 'CRM','Clinica', ''];
 
@@ -29,10 +26,15 @@ export class AgendamentoComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.qtdItens = this.measureAgendamentosSize(3,10);
   }
 
-  public abrirModal(): void {
+  //public abrirModal(): void {
+  //  $('#modal-credenciado').modal('show');
+  //}
 
+  private measureAgendamentosSize(quantidade, maxima) : number{
+    return this.agendamentos.length > 3 ? quantidade : maxima;
   }
 
 }

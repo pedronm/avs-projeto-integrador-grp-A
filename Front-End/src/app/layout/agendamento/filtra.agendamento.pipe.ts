@@ -14,7 +14,8 @@ export class FiltraAgendamentoPipe implements PipeTransform{
         searchText = searchText.toLowerCase();
 
         return items.filter( it => {
-            return it["especialidade"] && it.especialidade.toLowerCase().includes(searchText);
+            return (it["especialidade"] && it.especialidade.toLowerCase().includes(searchText) ||
+                    it["medico"] && it.medico.toLowerCase().includes(searchText));
         });
     }
 }

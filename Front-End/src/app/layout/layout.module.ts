@@ -13,10 +13,11 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
 import { FiltraAgendamentoPipe } from './agendamento/filtra.agendamento.pipe';
 
+
 @NgModule({
   declarations: [
     AgendamentoComponent,
-    FiltraAgendamentoPipe
+    FiltraAgendamentoPipe,
   ],
   imports: [
     CommonModule,
@@ -30,7 +31,7 @@ import { FiltraAgendamentoPipe } from './agendamento/filtra.agendamento.pipe';
   ],
   exports: [
 	AgendamentoComponent,
-  ],
+  ],  
   providers : [
 	AgendamentoService
   ]
