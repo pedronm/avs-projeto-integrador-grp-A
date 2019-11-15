@@ -59,13 +59,14 @@
         </thead>
         <tbody>
             <tr *ngFor="let agendamento of agendamentos 
+                    | filtroAgendamento : medico 
+                    | filtroAgendamento : especialidade
                     | paginate: { 
                         id: 'paginator-agendamentos',
                         itemsPerPage: qtdItens,
                         currentPage: p,
                         totalItems: total} 
-                    | filtroAgendamento : medico 
-                    | filtroAgendamento : especialidade ">
+                     ">
                 <td scope="row" >
                     {{agendamento.data}}
                 </td>
