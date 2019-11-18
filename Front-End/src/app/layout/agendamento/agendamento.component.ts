@@ -19,10 +19,15 @@ export class AgendamentoComponent implements OnInit {
 
   public cabecalho: string[] = ['Data', 'Horario', 'Especialidade', 'Medico', 'CRM','Clinica', ''];
 
-  // MOCK DATA LIST
+  // Propriedades do Agendamento
+  public credenciado: string = '';
   public medico: string = "";
   public especialidade: string = "";
+
+  // MOCK DATA LIST
   public agendamentos: Agendamento[] = AGENDAMENTOS;
+  public credenciados : string[] = [];
+ 
   constructor() { }
 
   ngOnInit() {
@@ -37,5 +42,29 @@ export class AgendamentoComponent implements OnInit {
     return this.agendamentos.length > 3 ? quantidade : maxima;
   }
 
+  public selecionarCredenciado(cred): void {
+    if(cred)
+    {
+      this.credenciado = cred;  
+    }
+    else
+    {
+      this.credenciado = '';
+    }
+  }
+  
+  public buscaCredenciado(): void{
+    let carregados = ['Hospital 1', 'Hospital 2', 'Hospital 3', 'Aquele Hospital tal'];
+    if(this.credenciado)
+    {
+      this.credenciados = carregados.filter( retorno => retorno.toLowerCase().includes(this.credenciado.toLowerCase()));
+      this.credenciados = [...this.credenciados];
+    }
+    else
+    {
+      this.credenciados = [...[]];
+    }
+
+  }
+
 }
- 

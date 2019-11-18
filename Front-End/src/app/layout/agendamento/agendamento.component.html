@@ -1,8 +1,10 @@
 
 <div class="container my-1 border rounded p-5 ">
     <div class="col-lg-12 col-sm-12">
-        <h3>Agendamento<button class="btn float-right btn-outline-light" 
-            data-toggle="modal" data-target="#modal-credenciado"><img [src]="urlIcoClinica"/></button></h3>
+        <h3>Agendamento
+            <div class="float-right">{{credenciado}}<button class="btn btn-outline-light" 
+            data-toggle="modal" data-target="#modal-credenciado"><img [src]="urlIcoClinica"/></button>
+        </div></h3>
         <hr>
     </div>
     <!-- Campos para pesquisa de Agendamentos possíveis -->
@@ -119,7 +121,21 @@
                 </button>
             </div>
             <div class="modal-body">
-               
+               <section>
+                   <div class="keyword-wrapper">
+                     <input id="in-nome-credenciado" name="nomeCredenciado" class="form-control" placeholder="Digite o nome do credenciado ou seu CNPJ..."
+                      [(ngModel)]="credenciado" (keyup)="buscaCredenciado()"
+                      aria-label="Digite o nome do credenciado ou seu CNPJ..." autofocus/>
+                      
+                   </div>
+                   <div id="box-busca" class="overflow-auto">
+                        <ul *ngFor="let cred of credenciados" class=" lista-credenciados list-group">
+                            <li class="item-lista-credenciados list-group-item" (click)="selecionarCredenciado(cred)"> 
+                                    {{cred}}
+                            </li>
+                        </ul>
+                    </div>
+               </section>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -128,3 +144,4 @@
         </div>
     </div>
 </div>
+;
