@@ -12,12 +12,14 @@ import { HttpClientModule }    from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
 import { FiltraAgendamentoPipe } from './agendamento/filtra.agendamento.pipe';
-
+import { CredenciadoComponent } from './credenciado/credenciado.component';
+import { TextMaskModule } from 'angular2-text-mask';
 
 @NgModule({
   declarations: [
     AgendamentoComponent,
     FiltraAgendamentoPipe,
+    CredenciadoComponent,
   ],
   imports: [
     CommonModule,
@@ -28,6 +30,7 @@ import { FiltraAgendamentoPipe } from './agendamento/filtra.agendamento.pipe';
 	  HttpClientModule,
     NgxPaginationModule,
     FormsModule,
+    TextMaskModule
   ],
   exports: [
 	AgendamentoComponent,

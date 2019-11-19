@@ -12,11 +12,10 @@ declare var $: any;
 export class AgendamentoComponent implements OnInit {
   
   public urlIcoClinica = './../../assets/clinica.png';
-  public configuracaoBuscaCredenciado = 'lista-credenciados overflow-hidden pr-4 list-group';
 
   public dataEscolhida: string = "2003-07-21";
   public horario: string = "09:00:00";
-  public qtdItens = 0;
+  public qtdItens = 3;
 
   public cabecalho: string[] = ['Data', 'Horario', 'Especialidade', 'Medico', 'CRM','Clinica', ''];
 
@@ -32,50 +31,7 @@ export class AgendamentoComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.qtdItens = this.measureAgendamentosSize(3,10);
   }
 
-  //public abrirModal(): void {
-  //  $('#modal-credenciado').modal('show');
-  //}
 
-  private measureAgendamentosSize(quantidade, maxima) : number{
-    return this.agendamentos.length > 3 ? quantidade : maxima;
-  }
-
-  public selecionarCredenciado(cred): void {
-    if(cred)
-    {
-      this.credenciado = cred;  
-	  this.credenciados = [];
-	  this.fecharModal();
-    }
-    else
-    {
-      this.credenciado = '';
-    }
-  }
-  
-  public buscaCredenciado(): void{
-    let carregados = ['Hospital 1', 'Hospital 2', 'Hospital 3', 'Aquele Hospital tal'];
-	this.configuracaoBuscaCredenciado += ' pushing-ahead';
-    if(this.credenciado)
-    {
-      this.credenciados = carregados.filter( retorno => retorno.toLowerCase().includes(this.credenciado.toLowerCase()));
-      this.credenciados = [...this.credenciados];
-    }
-    else
-    {
-      this.credenciados = [...[]];
-    }
-	
-	this.configuracaoBuscaCredenciado.replace('pushing-ahead', '');
-  }
-  
-  public abrirModal(): void {
-	 $('#modal-credenciado').modal('show'); 
-  }
-  public fecharModal(): void{
-	  $('#modal-credenciado').modal('hide'); 
-  }
 }
