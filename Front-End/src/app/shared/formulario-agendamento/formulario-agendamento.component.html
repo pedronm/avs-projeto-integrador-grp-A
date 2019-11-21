@@ -1,1 +1,38 @@
-<p>formulario-agendamento works!</p>
+<form>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="find-especialidades">Especialidade</label>
+                <input [(ngModel)]="especialidade" 
+                      name="nomeEspecialidade" id="find-especialidades" 
+                      placeholder="Escreva a especialidade que deseja..." 
+                      aria-label="Escreva a especialidade que deseja..."
+                      type="text" class="form-control" />
+                
+            </div>
+            <div class="form-group col-md-3">
+                <label for="in-date">Data</label>
+                <input type="text" [mask]="getMascaraData()" class="form-control" [(ngModel)]="data" name="data" id="in-date"/>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="in-hour">Hora</label>
+                <input type="text" [mask]="getMascaraHora()" class="form-control" [(ngModel)]="horario" name="horario" id="in-hour"/>
+                <!-- Componente do Datepicker
+                    <label for="in-calendario">Calendario</label>
+                    <input matInput id="in-calendario" class="form-control" [matDatepicker]="picker" placeholder="Escolha a Data">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                -->             
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="find-medico" >Medico</label>
+                <input id="find-medico" 
+                [(ngModel)]="medico"
+                class="form-control"       
+                name="medico"  
+                placeholder="Escreva o nome do médico que deseja..." 
+                aria-label="Escreva o nome do médico que deseja..."/>
+            </div>
+        </div>        
+    </form>

@@ -10,10 +10,9 @@ import {
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule }    from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
-import { FormsModule } from '@angular/forms';
 import { FiltraAgendamentoPipe } from './agendamento/filtra.agendamento.pipe';
 import { CredenciadoComponent } from './credenciado/credenciado.component';
-import { TextMaskModule } from 'angular2-text-mask';
+import { SharedModule } from '../shared/sharedmodule.module';
 
 @NgModule({
   declarations: [
@@ -29,8 +28,7 @@ import { TextMaskModule } from 'angular2-text-mask';
     BrowserAnimationsModule,
 	  HttpClientModule,
     NgxPaginationModule,
-    FormsModule,
-    TextMaskModule
+    SharedModule
   ],
   exports: [
 	AgendamentoComponent,
