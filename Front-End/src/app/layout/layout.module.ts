@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AgendamentoComponent } from './agendamento/agendamento.component';
 import { AgendamentoService } from './services/agendamento.service';
+import { ListaComboService } from './services/lista.combo.service';
 import { 
   MatDatepickerModule,
   MatNativeDateModule,
@@ -38,7 +39,8 @@ import { NgxMaskModule } from 'ngx-mask';
 	AgendamentoComponent,
   ],  
   providers : [
-	AgendamentoService
+  AgendamentoService,
+  ListaComboService
   ]
 })
 export class LayoutModule { }

@@ -1,9 +1,12 @@
 
 export class Agendamento {
-    constructor(public data? : string,
-		    public horario? : string,
+    constructor(
+            public nr_matricula?: string,
+            public credenciado?: string,
+            public data? : string,
+            public horaInicio? : string,
+            public horaFim?: string,
+            public vlPush?: string,
             public especialidade?: string,
-            public medico?: string,
-            public crm?: string,
-            public clinica?: string){}
+            public medico?: string,){}
 }

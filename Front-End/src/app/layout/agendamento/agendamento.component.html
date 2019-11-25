@@ -68,6 +68,9 @@
             <tr *ngFor="let agendamento of agendamentos 
                     | filtroAgendamento : medico 
                     | filtroAgendamento : especialidade
+                    | filtroAgendamento : dataDe
+                    | filtroAgendamento : dataAte
+                    | filtroAgendamento : horario
                     | paginate: { 
                         id: 'paginator-agendamentos',
                         itemsPerPage: qtdItens,
@@ -78,19 +81,13 @@
                     {{agendamento.data}}
                 </td>
                 <td>
-                    {{agendamento.horario}}
+                    {{agendamento.horaInicio}}
                 </td>
                 <td>
                     {{agendamento.especialidade}}
                 </td>
                 <td>
                     {{agendamento.medico}}
-                </td>
-                <td>
-                    {{agendamento.crm}}
-                </td>
-                <td>
-                    {{agendamento.clinica}}
                 </td>
                 <td>
                     <button class="btn btn-primary">
