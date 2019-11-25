@@ -25,7 +25,7 @@ export class CredenciadoComponent implements OnInit {
   }
 
   public gotoAgendamentos(credenciado?){
-    this.router.navigateByUrl('/agendamento');
+    this.router.navigate(['/agendamento', credenciado]);
   }
 
 }

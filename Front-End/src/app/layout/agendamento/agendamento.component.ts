@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Agendamento } from 'src/app/shared/models/agendamento.model';
 import { AGENDAMENTOS } from './mock.agendamento';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 declare var $: any;
 
@@ -29,9 +30,12 @@ export class AgendamentoComponent implements OnInit {
   public dataDe: string;
   public dataAte: string;
  
-  constructor(private router: Router) { }
+  constructor(private router: Router, private activeRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.activeRoute.paramMap.subscribe( params => {
+      this.credenciado = params.get("id");
+    })
   }
 
   public gotoCredenciado(){
