@@ -62,14 +62,14 @@
                         currentPage: p,
                         totalItems: total} 
                      ">
-                <td scope="row" >
+                <td>
                     {{credenciado.nome}}
                 </td>
                 <td>
                     {{credenciado.endereco}}
                 </td>
                 <td>
-                    <button class="btn btn-primary" routerLink="/crisis-center" routerLinkActive="active">
+                    <button class="btn btn-primary" (click)="gotoAgendamentos(credenciado.id )">
                         Marcacoes
                     </button>
                 </td>

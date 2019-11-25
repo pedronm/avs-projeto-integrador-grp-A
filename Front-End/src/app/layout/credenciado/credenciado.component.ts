@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CREDENCIADOS } from './mock.credenciado';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-credenciado',
@@ -18,9 +19,13 @@ export class CredenciadoComponent implements OnInit {
   
   public qtdItens = 3;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  public gotoAgendamentos(credenciado?){
+    this.router.navigateByUrl('/agendamento');
   }
 
 }

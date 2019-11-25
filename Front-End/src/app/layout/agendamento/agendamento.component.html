@@ -2,8 +2,10 @@
 <div class="container my-1 border rounded p-5 ">
     <div class="col-lg-12 col-sm-12">
         <h3>Agendamento
-            <div class="float-right"><span class="pr-2">{{credenciado}}</span>
-        </div><a routerLink="/credenciado" routerLinkActive="active"><img [src]="urlIcoVoltar"></a></h3>
+            <div class="float-right">
+                <button class="btn" (click)="gotoCredenciado()"><img [src]="urlIcoVoltar"></button>
+                <span class="pr-2">{{credenciado}}</span>
+        </div></h3>
         <hr>
     </div>
     <!-- Campos para pesquisa de Agendamentos possíveis -->
@@ -64,8 +66,8 @@
         </thead>
         <tbody>
             <tr *ngFor="let agendamento of agendamentos 
-                    | filtroAgendamento : formulario.medico 
-                    | filtroAgendamento : formulario.especialidade
+                    | filtroAgendamento : medico 
+                    | filtroAgendamento : especialidade
                     | paginate: { 
                         id: 'paginator-agendamentos',
                         itemsPerPage: qtdItens,

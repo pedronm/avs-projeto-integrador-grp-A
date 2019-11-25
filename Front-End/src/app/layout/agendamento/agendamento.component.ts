@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Agendamento } from 'src/app/shared/models/agendamento.model';
 import { AGENDAMENTOS } from './mock.agendamento';
+import { Router } from '@angular/router';
 
 declare var $: any;
 
@@ -28,10 +29,12 @@ export class AgendamentoComponent implements OnInit {
   public dataDe: string;
   public dataAte: string;
  
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
-
+  public gotoCredenciado(){
+    this.router.navigateByUrl('/credenciado');
+  }
 }

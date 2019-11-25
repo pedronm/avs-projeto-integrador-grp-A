@@ -1,4 +1,4 @@
 
 export const CREDENCIADOS = [
-    {nome: 'São Lourenço', endereco : 'Rua da saudade'}
+    {id: 1, nome: 'São Lourenço', endereco : 'Rua da saudade'}
 ]
