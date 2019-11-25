@@ -10,10 +10,9 @@ import { Component } from '@angular/core';
     <main>
       <div class="row">
         <div class="col-sm-12 col-lg-12">
-          <app-agendamento></app-agendamento> 
+          <router-outlet></router-outlet>
         </div>        
       </div>      
-      <!--<router-outlet></router-outlet>-->
     </main>
    
     <footer class="text-center">

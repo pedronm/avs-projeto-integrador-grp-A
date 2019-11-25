@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Agendamento } from 'src/app/shared/models/agendamento.model';
 import { AGENDAMENTOS } from './mock.agendamento';
-import { FormularioAgendamentoComponent } from 'src/app/shared/formulario-agendamento/formulario-agendamento.component';
 
 declare var $: any;
 
@@ -11,8 +10,8 @@ declare var $: any;
   styleUrls: ['./agendamento.component.scss']
 })
 export class AgendamentoComponent implements OnInit {
-  
-  @ViewChild('form',{ static: false}) formulario: FormularioAgendamentoComponent = new FormularioAgendamentoComponent();
+
+  public urlIcoVoltar = "./../../assets/voltar.png";
 
   public qtdItens = 3;
   public credenciado = "";
@@ -21,6 +20,13 @@ export class AgendamentoComponent implements OnInit {
   // MOCK DATA LIST
   public agendamentos: Agendamento[] = AGENDAMENTOS;
   public credenciados : string[] = [];
+
+  //
+  public medico: string = "";
+  public especialidade: string = "";
+  public horario: string;
+  public dataDe: string;
+  public dataAte: string;
  
   constructor() { }
 

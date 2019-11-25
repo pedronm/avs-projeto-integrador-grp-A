@@ -13,6 +13,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { FiltraAgendamentoPipe } from './agendamento/filtra.agendamento.pipe';
 import { CredenciadoComponent } from './credenciado/credenciado.component';
 import { SharedModule } from '../shared/sharedmodule.module';
+import { FormsModule } from '@angular/forms';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { SharedModule } from '../shared/sharedmodule.module';
     BrowserAnimationsModule,
 	  HttpClientModule,
     NgxPaginationModule,
-    SharedModule
+    SharedModule,    
+    FormsModule,
+    NgxMaskModule
   ],
   exports: [
 	AgendamentoComponent,

@@ -1,13 +1,46 @@
 
 <div class="container my-1 border rounded p-5 ">
     <div class="col-lg-12 col-sm-12">
-        <h3>Agendamento
-            <div class="float-right"><span class="pr-2">{{credenciado}}</span><button class="btn btn-outline-light" 
-            data-toggle="modal" data-target="#modal-credenciado"><img [src]="urlIcoClinica"/></button>
-        </div></h3>
+        <h3>Credenciados
+           </h3>
         <hr>
     </div>
     
+    <div class="col-lg-12 col-sm-12">
+        <form>
+        <div class="form-row">
+                <div class="form-group col-md-2">
+                    <!-- De -->
+                    <label for="in-data">De</label>
+                    <input type="text" mask="d0/M0/0000" [specialCharacters]="[ '/' ]" dropSpecialCharacters="true"
+                        [showMaskTyped]="true"  class="form-control" [(ngModel)]="dataDe" name="inData" id="in-data"/>
+                        
+                </div>
+                <div class="form-group col-md-2">
+                    <!-- Até -->
+                        <label for="in-data">Até </label>
+                    <input type="text" mask="d0/M0/0000" [specialCharacters]="[ '/' ]" dropSpecialCharacters="true"
+                        [showMaskTyped]="true"  class="form-control" [(ngModel)]="dataAte" name="inData" id="in-data"/>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="in-data">Horario</label>
+                    <input type="text" mask="h0:m0" [specialCharacters]="[ ':' ]" dropSpecialCharacters="true"
+                        [showMaskTyped]="true"  class="form-control" [(ngModel)]="horario" name="inData" id="in-data"/>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="find-medico" >Medico</label>
+                    <input id="find-medico" 
+                    [(ngModel)]="medico"
+                    class="form-control"       
+                    name="medico"  
+                    placeholder="Escreva o nome do médico que deseja..." 
+                    aria-label="Escreva o nome do médico que deseja..."/>
+                </div>
+            </div>        
+        </form>
+    </div>
 
     <!-- Tabela juntamente com a função de agendar. -->
     <div class="col-lg-12 col-sm-12">
@@ -20,44 +53,32 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let agendamento of agendamentos 
-                    | filtroAgendamento : medico 
-                    | filtroAgendamento : especialidade
+            <!-- | filtroCredenciado : medico 
+                    | filtroCredenciado : especialidade-->
+            <tr *ngFor="let credenciado of credenciados 
                     | paginate: { 
-                        id: 'paginator-agendamentos',
+                        id: 'paginator-credenciados',
                         itemsPerPage: qtdItens,
                         currentPage: p,
                         totalItems: total} 
                      ">
                 <td scope="row" >
-                    {{agendamento.data}}
+                    {{credenciado.nome}}
                 </td>
                 <td>
-                    {{agendamento.horario}}
+                    {{credenciado.endereco}}
                 </td>
                 <td>
-                    {{agendamento.especialidade}}
-                </td>
-                <td>
-                    {{agendamento.medico}}
-                </td>
-                <td>
-                    {{agendamento.crm}}
-                </td>
-                <td>
-                    {{agendamento.clinica}}
-                </td>
-                <td>
-                    <button class="btn btn-primary">
-                        Agendar
+                    <button class="btn btn-primary" routerLink="/crisis-center" routerLinkActive="active">
+                        Marcacoes
                     </button>
                 </td>
             </tr>
-        </tbody>
+            </tbody>
         </table>
         <pagination-controls  class="text-center"
                                 (pageChange)="p = $event" previousLabel="" nextLabel=""
-                                id="paginator-agendamentos"
+                                id="paginator-credenciados"
                                 maxSize="3"
                                 directionLinks="true"
                                 autoHide="true"
