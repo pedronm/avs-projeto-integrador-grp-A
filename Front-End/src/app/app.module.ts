@@ -8,6 +8,7 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { SharedModule } from './shared/sharedmodule.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthGuard } from './auth/auth.guard';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
@@ -27,7 +28,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
   ],
   exports: [    
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

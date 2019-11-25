@@ -10,7 +10,7 @@ const routes: Routes = [
   {path:'credenciado', component: CredenciadoComponent},
   {path:'agendamento/:id', 
    component: AgendamentoComponent,
-   canLoad: [AuthGuard]},
+   canActivate: [AuthGuard]},
   {path:'', redirectTo: '/credenciado', pathMatch:'full'},
   {path:'**', component: PageNotFoundComponent }
 ];
