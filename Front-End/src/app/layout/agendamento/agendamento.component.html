@@ -1,6 +1,6 @@
 
-<div class="container my-1 border rounded p-5 ">
-    <div class="col-lg-12 col-sm-12 col-12">
+<div class="container my-1 border rounded p-1 ">
+    <div class="col-lg-12 cocol-sm-12 col-12">
         <h3>Agendamento
             <div class="float-right">
                 <button class="btn" (click)="gotoCredenciado()"><img [src]="urlIcoVoltar"></button>
@@ -9,9 +9,9 @@
         <hr>
     </div>
     <!-- Campos para pesquisa de Agendamentos possíveis -->
-    <div class="col-lg-12 col-sm-12 col-12">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
             <form>
-                    <div class="form-row">
+                    <div class="row">
                         <div class="form-group col-md-6 col-sm-12 col-12">
                             <label for="find-especialidades">Especialidade</label>
                             <input [(ngModel)]="especialidade" 
@@ -40,7 +40,7 @@
                                 [showMaskTyped]="true"  class="form-control" [(ngModel)]="horario" name="inData" id="in-data"/>
                         </div>
                     </div>
-                    <div class="form-row">
+                    <div class="row">
                         <div class="form-group col-md-6 col-sm-12 col-12">
                             <label for="find-medico" >Medico</label>
                             <input id="find-medico" 
