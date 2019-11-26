@@ -1,6 +1,6 @@
 
 <div class="container my-1 border rounded p-5 ">
-    <div class="col-lg-12 col-sm-12">
+    <div class="col-lg-12 col-sm-12 col-12">
         <h3>Agendamento
             <div class="float-right">
                 <button class="btn" (click)="gotoCredenciado()"><img [src]="urlIcoVoltar"></button>
@@ -9,10 +9,10 @@
         <hr>
     </div>
     <!-- Campos para pesquisa de Agendamentos possíveis -->
-    <div class="col-lg-12 col-sm-12">
+    <div class="col-lg-12 col-sm-12 col-12">
             <form>
                     <div class="form-row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-6 col-sm-12 col-12">
                             <label for="find-especialidades">Especialidade</label>
                             <input [(ngModel)]="especialidade" 
                                   name="nomeEspecialidade" id="find-especialidades" 
@@ -21,27 +21,27 @@
                                   type="text" class="form-control" />
                             
                         </div>
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-2 col-sm-12 col-12">
                             <!-- De -->
                             <label for="in-data">De</label>
                             <input type="text" mask="d0/M0/0000" [specialCharacters]="[ '/' ]" dropSpecialCharacters="true"
                              [showMaskTyped]="true"  class="form-control" [(ngModel)]="dataDe" name="inData" id="in-data"/>
                              
                         </div>
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-2 col-sm-12 col-12">
                             <!-- Até -->
                              <label for="in-data">Até </label>
                             <input type="text" mask="d0/M0/0000" [specialCharacters]="[ '/' ]" dropSpecialCharacters="true"
                              [showMaskTyped]="true"  class="form-control" [(ngModel)]="dataAte" name="inData" id="in-data"/>
                         </div>
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-2 col-sm-12 col-12">
                             <label for="in-data">Horario</label>
                             <input type="text" mask="h0:m0" [specialCharacters]="[ ':' ]" dropSpecialCharacters="true"
                                 [showMaskTyped]="true"  class="form-control" [(ngModel)]="horario" name="inData" id="in-data"/>
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-6 col-sm-12 col-12">
                             <label for="find-medico" >Medico</label>
                             <input id="find-medico" 
                             [(ngModel)]="medico"
@@ -55,7 +55,7 @@
     </div>
 
     <!-- Tabela juntamente com a função de agendar. -->
-    <div class="col-lg-12 col-sm-12">
+    <div class="table-responsive col-lg-12 col-sm-12">
     <table class="table overflow-auto">
         <thead>
             <tr>
