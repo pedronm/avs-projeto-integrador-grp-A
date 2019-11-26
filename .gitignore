@@ -1,1 +1,6 @@
+#EXT. Arquivos
+.firebase
+#PASTAS
 Front-End/package-lock.json
+dist/
+nod_modules/
