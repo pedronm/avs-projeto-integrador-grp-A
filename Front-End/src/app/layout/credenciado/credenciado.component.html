@@ -8,16 +8,16 @@
     
     <div class="col-lg-12 col-sm-12">
         <form>
-        <div class="form-row">
+        <!--<div class="form-row">
                 <div class="form-group col-md-2">
-                    <!-- De -->
+                    < De >
                     <label for="in-data">De</label>
                     <input type="text" mask="d0/M0/0000" [specialCharacters]="[ '/' ]" dropSpecialCharacters="true"
                         [showMaskTyped]="true"  class="form-control" [(ngModel)]="dataDe" name="inData" id="in-data"/>
                         
                 </div>
                 <div class="form-group col-md-2">
-                    <!-- Até -->
+                    < Até >
                         <label for="in-data">Até </label>
                     <input type="text" mask="d0/M0/0000" [specialCharacters]="[ '/' ]" dropSpecialCharacters="true"
                         [showMaskTyped]="true"  class="form-control" [(ngModel)]="dataAte" name="inData" id="in-data"/>
@@ -27,19 +27,19 @@
                     <input type="text" mask="h0:m0" [specialCharacters]="[ ':' ]" dropSpecialCharacters="true"
                         [showMaskTyped]="true"  class="form-control" [(ngModel)]="horario" name="inData" id="in-data"/>
                 </div>
-            </div>
+            </div>-->
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="find-medico" >Medico</label>
-                    <input id="find-medico" 
-                    [(ngModel)]="medico"
+                    <label for="find-credenciado" >Credenciado</label>
+                    <input id="find-credenciado" 
+                    [(ngModel)]="credenciado"
                     class="form-control"       
                     name="medico"  
-                    placeholder="Escreva o nome do médico que deseja..." 
-                    aria-label="Escreva o nome do médico que deseja..."/>
+                    placeholder="Escreva o nome do credenciado que deseja..." 
+                    aria-label="Escreva o nome do credenciado que deseja..."/>
                 </div>
             </div>        
-        </form>
+        </form> 
     </div>
 
     <!-- Tabela juntamente com a função de agendar. -->
@@ -56,10 +56,7 @@
             <!-- | filtroCredenciado : medico 
                     | filtroCredenciado : especialidade-->
             <tr *ngFor="let credenciado of credenciados 
-                    | filtroCredenciado: medico
-                    | filtroCredenciado: horario
-                    | filtroCredenciado: dataDe
-                    | filtroCredenciado: dataAte
+                    | filtroCredenciado: credenciado
                     | paginate: { 
                         id: 'paginator-credenciados',
                         itemsPerPage: qtdItens,

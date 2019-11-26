@@ -21,7 +21,7 @@ export class CredenciadoComponent implements OnInit {
   public horario: string;
 
   public credenciados = [];
-  public medicos:Medico[] = [];
+  public credenciado = '';
   
   public qtdItens = 3;
 
@@ -31,15 +31,7 @@ export class CredenciadoComponent implements OnInit {
 
   ngOnInit() {
     localStorage.setItem('matricula', '1');
-    this.carregaMedicos();
     this.carregarCredenciados();
-  }
-
-  public carregaMedicos(): void{
-    this.listaComboService.listaMedicos()
-      .subscribe( retorno => {
-        this.medicos = retorno.map(retorno => new Medico(retorno.id,retorno.nome));
-      })
   }
 
   public carregarCredenciados(): void{
@@ -48,21 +40,11 @@ export class CredenciadoComponent implements OnInit {
         this.credenciados = retorno.map(retorno =>
           new Credenciado(retorno.id, 
             retorno.nome, 
-            this.getListaMedicos(retorno.id),
             retorno.endereco,
             '',
-            ''
+            '',
             ))
       })
-  }
-
-  public getListaMedicos(id): string[]{
-    let listaFiltrada: string[];
-    this.agendamentoService.listaAgendamentos()
-      .subscribe(retorno => {
-        listaFiltrada = retorno.map(agendamento => {if(agendamento.credenciado == id) return this.medicos.find(retorno => retorno.id == agendamento.medico).nome })
-      })
-    return listaFiltrada;
   }
 
   public gotoAgendamentos(credenciado?){

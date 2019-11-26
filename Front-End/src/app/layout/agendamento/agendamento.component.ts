@@ -62,7 +62,7 @@ export class AgendamentoComponent implements OnInit {
     this.listaComboService.listaCredenciados()
       .subscribe( retorno => {
         this.credenciados = retorno
-        .map(credenciado => new Credenciado(credenciado.id, credenciado.nome, credenciado.endereco, '', ''))
+        .map(credenciado => new Credenciado(credenciado.id, credenciado.nome, credenciado.endereco,'', ''))
       });
     this.credenciado = this.credenciados.find(credenciado => credenciado.codigo == this.credenciado).descricao;
   }
