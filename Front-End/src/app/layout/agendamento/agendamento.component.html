@@ -77,7 +77,7 @@
                         currentPage: p,
                         totalItems: total} 
                      ">
-                <td scope="row" >
+                <td>
                     {{agendamento.data}}
                 </td>
                 <td>
@@ -90,7 +90,7 @@
                     {{agendamento.medico}}
                 </td>
                 <td>
-                    <button class="btn btn-primary">
+                    <button class="btn btn-primary" (click)="agendar(agendamento)">
                         Agendar
                     </button>
                 </td>

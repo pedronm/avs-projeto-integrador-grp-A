@@ -1,11 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { fadeInItems } from '@angular/material';
 
 
 @Pipe({
-    name : 'filtroAgendamento'
+    name : 'filtroCredenciado'
 })
-export class FiltraAgendamentoPipe implements PipeTransform{
+export class FiltroCredenciadoPipe implements PipeTransform{
     transform(items: any[], cmpBusca: string): any[]{
         if(!items) return [];
         if(!cmpBusca) return items;
@@ -16,9 +15,8 @@ export class FiltraAgendamentoPipe implements PipeTransform{
         return items.filter( it => {
             return (it["especialidade"] && it.especialidade.toLowerCase().includes(cmpBusca) ||
                     it["medico"] && it.medico.toLowerCase().includes(cmpBusca))||
-                    (it["dataDe"] && this.comparaData(it["dataDe"], cmpBusca) == 1 
-                        &&
-                    it["dataAte"] && this.comparaData(it["dataAte"], cmpBusca));
+                    it["data"] && this.comparaData(it["dataDe"], cmpBusca) == 1 ||
+                    it["data"] && this.comparaData(it["dataAte"], cmpBusca) == -1 ;
         });
     }
 
@@ -32,7 +30,9 @@ export class FiltraAgendamentoPipe implements PipeTransform{
    private comparaData(data, datec){
     // com objetos de Date é possível fazer comparações usando os operadores  >, <, <= or >=.
     // o ==, !=, ===, e !== operators precisam usar o método date.getTime(),
-    
+    if(!new Date(data) && !new Date(datec)){
+        return false;
+    }
     // É preciso instanciar os objetos com 'new Date()'
     let d1 = new Date(data); let d2 = new Date(datec);
 
@@ -43,8 +43,12 @@ export class FiltraAgendamentoPipe implements PipeTransform{
     // checar se a primeira é maior que a segunda
     if (d1 > d2) return 1;
     
-    // checar se a primeira é maior que a terceira
+    // checar se a primeira é maior que a segunda
     if (d1 < d2) return -1;
-}
+    }
+
+    private comparaHora(hora,horab): boolean{
+        return false;
+    }
 
 }

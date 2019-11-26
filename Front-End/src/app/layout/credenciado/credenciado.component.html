@@ -56,6 +56,10 @@
             <!-- | filtroCredenciado : medico 
                     | filtroCredenciado : especialidade-->
             <tr *ngFor="let credenciado of credenciados 
+                    | filtroCredenciado: medico
+                    | filtroCredenciado: horario
+                    | filtroCredenciado: dataDe
+                    | filtroCredenciado: dataAte
                     | paginate: { 
                         id: 'paginator-credenciados',
                         itemsPerPage: qtdItens,
@@ -63,13 +67,13 @@
                         totalItems: total} 
                      ">
                 <td>
-                    {{credenciado.nome}}
+                    {{credenciado.descricao}}
                 </td>
                 <td>
                     {{credenciado.endereco}}
                 </td>
                 <td>
-                    <button class="btn btn-primary" (click)="gotoAgendamentos(credenciado.id )">
+                    <button class="btn btn-primary" (click)="gotoAgendamentos(credenciado)">
                         Marcacoes
                     </button>
                 </td>

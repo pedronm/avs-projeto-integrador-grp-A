@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit,  } from '@angular/core';
 import { Agendamento } from 'src/app/shared/models/agendamento.model';
-import { flatMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { AgendamentoService } from '../services/agendamento.service';
 import { ListaComboService } from '../services/lista.combo.service';
+import { Medico } from 'src/app/shared/models/medico.model';
+import { Credenciado } from 'src/app/shared/models/credenciado.model';
 
 declare var $: any;
 
@@ -17,13 +18,15 @@ export class AgendamentoComponent implements OnInit {
 
   public urlIcoVoltar = "./../../assets/voltar.png";
 
+  public matricula: string;
   public qtdItens = 3;
   public credenciado = "";
   public cabecalho: string[] = ['Data', 'Horario', 'Especialidade', 'Medico', ''];
 
   // MOCK DATA LIST
   public agendamentos: Agendamento[] = [];
-  public credenciados : string[] = [];
+  public credenciados : Credenciado[] = [];
+  public medicos: Medico[] = [];
 
   //
   public medico: string = "";
@@ -38,42 +41,66 @@ export class AgendamentoComponent implements OnInit {
               private listaComboService: ListaComboService) { }
 
   ngOnInit() {
+    this.matricula = localStorage.getItem('matricula');
     this.activeRoute.paramMap.subscribe( params => {
       this.credenciado = params.get("id");
     })
 
+    this.carregarMedicos();
+    this.carregaCredenciados();
     this.carregarAgendamentos();
+  }
+
+  public carregarMedicos(): void{
+    this.listaComboService.listaMedicos()
+    .subscribe( retorno => {
+      this.medicos = retorno.map(medico => new Medico(medico.id, medico.nome));
+    })
+  }
+
+  public carregaCredenciados(): void{
+    this.listaComboService.listaCredenciados()
+      .subscribe( retorno => {
+        this.credenciados = retorno
+        .map(credenciado => new Credenciado(credenciado.id, credenciado.nome, credenciado.endereco, '', ''))
+      });
+    this.credenciado = this.credenciados.find(credenciado => credenciado.codigo == this.credenciado).descricao;
   }
 
   public carregarAgendamentos(): void{
     this.agendamentoService.listaAgendamentos()
       .subscribe( retorno => {
-        console.log('Entrando no subscribe' + retorno);
-        this.agendamentos = retorno.map( obj => this.populateAgendamento(obj))
+        this.agendamentos = retorno.map( obj => new Agendamento ( obj.id,
+                                                    obj.matricula,
+                                                    obj.credenciado,
+                                                    obj.data,
+                                                    obj.horaInicio,
+                                                    obj.horaFim,
+                                                    '',
+                                                    obj.especialidade,
+                                                    this.medicos.find(medico => medico.id == obj.medico).nome,))
+                                    .filter(retorno => retorno.matricula == '')
+                                    
+                                
       }, err => {
         this.agendamentos = []
-        console.log("Erro ao buscar os agendamentos! ")
       })
       
   }
 
-  public populateAgendamento(agendamento: any): Agendamento{
-    return new Agendamento(agendamento.nr_matricula,
-                           this.listaComboService.buscaCredenciado(agendamento.cd_credenciado),
-                           agendamento.dt_agenda,
-                           agendamento.hr_inicio,
-                           agendamento.hr_fim,
-                           agendamento.vl_push,
-                           this.listaComboService.buscaEspecialidade(agendamento.cd_especialidade),
-                           this.listaComboService.buscaMedico(agendamento.cd_medico));
-  }
   public gotoCredenciado(){
     this.router.navigateByUrl('/credenciado');
   }
 
-  public agendar() : void
+  public agendar(agendamento) : void
   {
-    
+    this.agendamentoService.agendar(agendamento, this.matricula)
+      .subscribe(retorno => {
+        console.log(retorno);
+        console.log('Sucesso!');
+      }, err => {
+        console.log('Falhou!');
+      });
   }
 
 }

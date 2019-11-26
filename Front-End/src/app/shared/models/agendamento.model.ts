@@ -1,7 +1,8 @@
 
 export class Agendamento {
     constructor(
-            public nr_matricula?: string,
+            public id: string,
+            public matricula?: string,
             public credenciado?: string,
             public data? : string,
             public horaInicio? : string,

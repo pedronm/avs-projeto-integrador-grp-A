@@ -11,16 +11,18 @@ import {
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule }    from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
-import { FiltraAgendamentoPipe } from './agendamento/filtra.agendamento.pipe';
+import { FiltroAgendamentoPipe } from './agendamento/filtro.agendamento.pipe';
 import { CredenciadoComponent } from './credenciado/credenciado.component';
 import { SharedModule } from '../shared/sharedmodule.module';
 import { FormsModule } from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
+import { FiltroCredenciadoPipe } from './credenciado/filtro.credenciado.pipe';
 
 @NgModule({
   declarations: [
     AgendamentoComponent,
-    FiltraAgendamentoPipe,
+    FiltroAgendamentoPipe,
+    FiltroCredenciadoPipe,
     CredenciadoComponent,
   ],
   imports: [
