@@ -18,14 +18,20 @@ export class ListaComboService {
 	constructor( private http: HttpClient,){
 	}
 
-	public listaMedicos(): Observable<any>{
-		//return this.http.get<Medico[]>(this.url+ '/medicos');
-		return of(MEDICOS);
+	public listaMedicos(id?): Observable<any>{
+		if(id){
+			return this.http.get<Medico[]>(this.url + `/credenciados/${id}/medicos`)
+		}
+		else{
+			return this.http.get<Medico[]>(this.url+ '/medicos');
+		}
+			
+		//return of(MEDICOS);
 	}
 
 	public listaCredenciados(): Observable<any>{
-		//return this.http.get<Credenciado[]>(this.url+ '/credenciados');
-		return of(CREDENCIADOS);
+		return this.http.get<Credenciado[]>(this.url+ '/credenciados');
+		//return of(CREDENCIADOS);
 	}
 	
 }

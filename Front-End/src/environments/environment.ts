@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  urlApi: 'http://localhost:8080/api'
+  //urlApi: 'http://localhost:8080/api'
+  urlApi: 'http://aps.kinghost.net:21153/api'
 };
 
 /*

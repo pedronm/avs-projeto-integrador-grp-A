@@ -5,7 +5,8 @@ export class Credenciado{
         public codigo?: string,
         public descricao?: string,
         public endereco?: string,
-        public contato?: string,
-        public email?: string
+        public contato?: string[],
+        public email?: string,
+        public medico?: Medico[]
         ){};
 }

@@ -47,7 +47,6 @@ export class AgendamentoComponent implements OnInit {
     })
 
     this.carregarMedicos();
-    this.carregaCredenciados();
     this.carregarAgendamentos();
   }
 
@@ -56,15 +55,6 @@ export class AgendamentoComponent implements OnInit {
     .subscribe( retorno => {
       this.medicos = retorno.map(medico => new Medico(medico.id, medico.nome));
     })
-  }
-
-  public carregaCredenciados(): void{
-    this.listaComboService.listaCredenciados()
-      .subscribe( retorno => {
-        this.credenciados = retorno
-        .map(credenciado => new Credenciado(credenciado.id, credenciado.nome, credenciado.endereco,'', ''))
-      });
-    this.credenciado = this.credenciados.find(credenciado => credenciado.codigo == this.credenciado).descricao;
   }
 
   public carregarAgendamentos(): void{

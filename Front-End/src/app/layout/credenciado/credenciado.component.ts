@@ -38,15 +38,26 @@ export class CredenciadoComponent implements OnInit {
     this.listaComboService.listaCredenciados()
       .subscribe( retorno => {
         this.credenciados = retorno.map(retorno =>
-          new Credenciado(retorno.id, 
-            retorno.nome, 
-            retorno.endereco,
-            '',
-            '',
+          new Credenciado(retorno.Codigo, 
+            retorno.Descricao, 
+            retorno.Endereco,
+            retorno.contato,
+            retorno.Email,
+            this.recuperaMedico(retorno.Codigo)
             ))
       })
   }
 
+  public recuperaMedico(codigo): Medico[]{
+    let medicos: Medico[];
+    this.listaComboService.listaMedicos(codigo)
+      .subscribe(retorno => 
+        {
+          medicos =  retorno.map(medico => Medico.getMedico(medico));
+        });
+    return medicos != null ? medicos : [] ;
+
+  }
   public gotoAgendamentos(credenciado?){
     this.router.navigate(['/agendamento', credenciado.codigo]);
   }
