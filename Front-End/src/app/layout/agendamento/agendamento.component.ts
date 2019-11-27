@@ -72,28 +72,53 @@ export class AgendamentoComponent implements OnInit {
     this.agendamentoService.listaAgendamentos()
       .subscribe( retorno => {
          agendamentos = retorno.map( agendamento => {
-            if(new String(this.credenciado.Descricao).valueOf() == new String(agendamento.Clinica).valueOf()) {            
-              Agendamento.getAgendamento(agendamento);
+           let a = new String(agendamento.Clinica).valueOf();
+           let b = this.credenciado.Descricao.trim();
+            if(a.localeCompare(b) == 0 ) {      
+              return Agendamento.getAgendamento(agendamento);
             }          
         });
       }, err => {
+        //console.log('final com erro: ' +agendamentos);
         this.agendamentos = []
-      }, () => {
-        if(!agendamentos)
+      }, () => {         
+        if(this.isNullOrEmpty(agendamentos)){
           this.agendamentos = [];
+        }
         else
+        {
+          //console.log('Final bem sucedido: ' + agendamentos)
+          console.log(agendamentos);
           this.agendamentos = agendamentos;
+        }
       })
       
   }
 
+  isNullOrEmpty(txt): boolean{
+    if(txt instanceof String){
+      if(txt || txt === '' || txt === null){
+        //console.log('texto nulo');
+        return true;
+      }else
+        return false;
+    }else if(txt instanceof Array || txt instanceof txt[txt]){      
+      if(!txt || txt === null || !txt[0] || txt[0] === null || txt[0] === ''){
+        //console.log('Array nulo ');
+        return true
+      }else{
+        //console.log('Array não nulo ');
+        return false;
+      }
+    }
+  }
   public gotoCredenciado(){
     this.router.navigateByUrl('/credenciado');
   }
 
   public agendar(agendamento) : void
   {
-    this.agendamentoService.agendar(agendamento, this.matricula)
+    this.agendamentoService.agendar(agendamento)
       .subscribe(retorno => {
         this.msgSucesso("Agendado!");
         this.agendamentos = [...this.agendamentos];

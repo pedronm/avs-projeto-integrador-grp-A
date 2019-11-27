@@ -28,7 +28,7 @@ export class AgendamentoService {
 		);
 	}
 	
-	public agendar(agendamento: any, matricula: string): Observable<any>{
+	public agendar(agendamento: any): Observable<any>{
 		return this.http.post<Agendamento>(this.url+ '/agendar/', agendamento, this.httpOptions)
 		.pipe(
 			retry(1),

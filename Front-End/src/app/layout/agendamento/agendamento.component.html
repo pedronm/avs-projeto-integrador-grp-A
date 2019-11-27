@@ -1,17 +1,23 @@
 
 <div class="container my-1 border rounded p-1 ">
-    <div class="col-lg-12 cocol-sm-12 col-12">
-        <h3>Agendamento
-            <div class="float-right">
+    <div class="col-lg-12 col-sm-12 col-12">
+        <div class="row">
+            <div class="col-lg-8 col-sm-12">
+                <h3>Agendamento</h3>
+            </div>            
+            <div class="col-lg-4 col-sm-12">
                 <button class="btn" (click)="gotoCredenciado()"><img [src]="urlIcoVoltar"></button>
                 <span class="pr-2">{{credenciado.Descricao}}</span>
-        </div></h3>
-        <hr>
+            </div>
+            
+            <hr>
+        </div>
+      
     </div>
     <!-- Campos para pesquisa de Agendamentos possíveis -->
-    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+    <div class="col-lg-12 col-sm-12">
             <form>
-                    <div class="row">
+                    <div class="form-row">
                         <div class="form-group col-md-6 col-sm-12 col-12">
                             <label for="find-especialidades">Especialidade</label>
                             <input [(ngModel)]="especialidade" 
@@ -21,26 +27,27 @@
                                   type="text" class="form-control" />
                             
                         </div>
-                        <div class="form-group col-md-2 col-sm-12 col-12">
-                            <!-- De -->
+                    <!--    <div class="form-group col-md-2 col-sm-12 col-12">
+                            <-!-- De -|->
                             <label for="in-data">De</label>
-                            <input type="text" mask="d0/M0/0000" [specialCharacters]="[ '/' ]" dropSpecialCharacters="true"
+                            <Z!--[specialCharacters]="[ '/' ]" dropSpecialCharacters="false"-|->
+                            <input type="text" mask="d0/M0/0000" [specialCharacters]="[ '/' ]" [dropSpecialCharacters]="false" 
                              [showMaskTyped]="true"  class="form-control" [(ngModel)]="dataDe" name="inData" id="in-data"/>
                              
                         </div>
                         <div class="form-group col-md-2 col-sm-12 col-12">
-                            <!-- Até -->
+                            <-!-- Até --|>
                              <label for="in-data">Até </label>
-                            <input type="text" mask="d0/M0/0000" [specialCharacters]="[ '/' ]" dropSpecialCharacters="true"
+                            <input type="text" mask="d0/M0/0000" [specialCharacters]="[ '/' ]" [dropSpecialCharacters]="false"
                              [showMaskTyped]="true"  class="form-control" [(ngModel)]="dataAte" name="inData" id="in-data"/>
                         </div>
                         <div class="form-group col-md-2 col-sm-12 col-12">
                             <label for="in-data">Horario</label>
-                            <input type="text" mask="h0:m0" [specialCharacters]="[ ':' ]" dropSpecialCharacters="true"
+                            <input type="text" mask="h0:m0" [specialCharacters]="[ ':' ]" [dropSpecialCharacters]="false"
                                 [showMaskTyped]="true"  class="form-control" [(ngModel)]="horario" name="inData" id="in-data"/>
-                        </div>
+                        </div>-->
                     </div>
-                    <div class="row">
+                    <div class="form-row">
                         <div class="form-group col-md-6 col-sm-12 col-12">
                             <label for="find-medico" >Medico</label>
                             <input id="find-medico" 
@@ -65,12 +72,13 @@
             </tr>
         </thead>
         <tbody>
+            
+                <!--| filtroAgendamento : dataDe
+                | filtroAgendamento : dataAte
+                | filtroAgendamento : horario -->
             <tr *ngFor="let agendamento of agendamentos 
                     | filtroAgendamento : medico 
                     | filtroAgendamento : especialidade
-                    | filtroAgendamento : dataDe
-                    | filtroAgendamento : dataAte
-                    | filtroAgendamento : horario
                     | paginate: { 
                         id: 'paginator-agendamentos',
                         itemsPerPage: qtdItens,

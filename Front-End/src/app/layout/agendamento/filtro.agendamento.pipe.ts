@@ -13,10 +13,10 @@ export class FiltroAgendamentoPipe implements PipeTransform{
         cmpBusca = cmpBusca.toLowerCase();
 
         return items.filter( it => {
-            return (it["especialidade"] && it.especialidade.toLowerCase().includes(cmpBusca) ||
-                    it["medico"] && it.medico.toLowerCase().includes(cmpBusca))||
-                    it["data"] && this.comparaData(it["dataDe"], cmpBusca) == 1 ||
-                    it["data"] && this.comparaData(it["dataAte"], cmpBusca) == -1 ;
+            return (it["Especialidade"] && it.Especialidade.toLowerCase().includes(cmpBusca) ||
+                    it["Medico"] && it.Medico.toLowerCase().includes(cmpBusca))||
+                    it["Data"] && this.comparaData(it["Data"], cmpBusca) == -1 ||
+                    it["Data"] && this.comparaData(it["Data"], cmpBusca) == 1 ;
         });
     }
 
@@ -28,23 +28,53 @@ export class FiltroAgendamentoPipe implements PipeTransform{
     *
     * */
    private comparaData(data, datec){
+    let convData = this.splitDatas(data);
+    let convDatec = this.splitDatas(datec);
     // com objetos de Date é possível fazer comparações usando os operadores  >, <, <= or >=.
     // o ==, !=, ===, e !== operators precisam usar o método date.getTime(),
-    if(!new Date(data) && !new Date(datec)){
+    if(!new Date(convData[0],convData[1],convData[2]) && !new Date(convDatec[0],convDatec[1],convDatec[2])){
         return false;
     }
     // É preciso instanciar os objetos com 'new Date()'
-    let d1 = new Date(data); let d2 = new Date(datec);
+    let d1 = new Date(convData[0],convData[1],convData[2]); let d2 = new Date(convDatec[0],convDatec[1],convDatec[2]);
 
     // cheque se as datas são iguais 
     let same = d1.getTime() === d2.getTime();
-    if (same) return 0;
 
-    // checar se a primeira é maior que a segunda
+    if (same) return 0;
+    // checar se a primeira é maior que a segunda 
+    //( é o até; e.g. : agendamento: 01/08/2019 | de = 02/08/2019; ou seja, não mostra depois disso)
     if (d1 > d2) return 1;
-    
     // checar se a primeira é maior que a segunda
+    //( é o De; e.g. : agendamento: 01/08/2019 | de = 31/07/2019; ou seja, só mostra depois disso)
     if (d1 < d2) return -1;
+    
+}
+
+private splitDatas(data): number[]{
+    
+    let datesArray = '';
+    let arrayData: number[] = [];
+    if(datesArray = data.split('-')){
+        datesArray = data.split('-');
+        if(datesArray.length > 1){
+            arrayData[0] = Number.parseFloat(datesArray[0]);
+            arrayData[1] = Number.parseFloat(datesArray[1]);
+            arrayData[2] = Number.parseFloat(datesArray[2]);
+        }
+    }
+    if(datesArray = data.split('/')){
+        datesArray = data.split('/');
+        if(datesArray.length > 1){
+           arrayData[0] = Number.parseFloat(datesArray[2]);
+           arrayData[1] = Number.parseFloat(datesArray[1]);
+           arrayData[2] = Number.parseFloat(datesArray[0]);
+        }
+    }
+
+    return arrayData;
+     //= data.split("-");
+    //var theDate = new Date(myDateArray[0],myDateArray[1]-1,myDateArray[2]); 
 }
 
 }

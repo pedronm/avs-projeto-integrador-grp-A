@@ -7,7 +7,8 @@ import { Medico } from 'src/app/shared/models/medico.model';
 })
 export class FiltroCredenciadoPipe implements PipeTransform{
 
-    constructor(private listas : ListaComboService){}
+    //constructor(private listas : ListaComboService){}
+    
     transform(items: any[], cmpBusca: string): any[]{
         if(!items) return [];
         if(!cmpBusca) return items;
