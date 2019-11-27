@@ -16,12 +16,15 @@ export class CredenciadoComponent implements OnInit {
   public urlIcoClinica : '' ;
 
   public cabecalho = ['Nome', 'Endereço', ''];
-  public dataDe: string;
+  /*public dataDe: string;
   public dataAte: string;
-  public horario: string;
+  public horario: string;*/
+  public medico: string;
+  public especialidade: string;
 
   public credenciados = [];
   public credenciado = '';
+  //public medicosCredenciados = new Map<string, Medico[]>();
   
   public qtdItens = 3;
 
@@ -32,6 +35,12 @@ export class CredenciadoComponent implements OnInit {
   ngOnInit() {
     localStorage.setItem('matricula', '1');
     this.carregarCredenciados();
+    /*if(this.credenciados.length > 0){
+      this.credenciados.forEach( credenciado => {
+        this.medicosCredenciados.set(credenciado.codigo, this.recuperaMedico(credenciado.codigo));
+        }
+      );
+    }*/
   }
 
   public carregarCredenciados(): void{
@@ -43,12 +52,13 @@ export class CredenciadoComponent implements OnInit {
             retorno.Endereco,
             retorno.contato,
             retorno.Email,
-            this.recuperaMedico(retorno.Codigo)
             ))
+      }, err => {
+        this.credenciados = [];
       })
   }
 
-  public recuperaMedico(codigo): Medico[]{
+  /*private recuperaMedico(codigo): Medico[]{
     let medicos: Medico[];
     this.listaComboService.listaMedicos(codigo)
       .subscribe(retorno => 
@@ -57,9 +67,9 @@ export class CredenciadoComponent implements OnInit {
         });
     return medicos != null ? medicos : [] ;
 
-  }
+  }*/
   public gotoAgendamentos(credenciado?){
-    this.router.navigate(['/agendamento', credenciado.codigo]);
+    this.router.navigate(['/agendamento', credenciado.Codigo]);
   }
 
 }

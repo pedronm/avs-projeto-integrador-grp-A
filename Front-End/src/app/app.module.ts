@@ -9,6 +9,8 @@ import { SharedModule } from './shared/sharedmodule.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './auth/auth.guard';
+import { ToastrModule  } from 'ngx-toastr';
+
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
@@ -25,6 +27,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     LayoutModule,
     NgxMaskModule.forRoot(options),
     SharedModule,
+    ToastrModule 
   ],
   exports: [    
   ],

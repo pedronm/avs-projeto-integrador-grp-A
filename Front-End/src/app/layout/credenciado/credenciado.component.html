@@ -28,13 +28,35 @@
                         [showMaskTyped]="true"  class="form-control" [(ngModel)]="horario" name="inData" id="in-data"/>
                 </div>
             </div>-->
+            <!--<div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="find-especialidade" >Especialidade</label>
+                    <input id="find-medico" 
+                    [(ngModel)]="especialidade"
+                    class="form-control"       
+                    name="especialidade"  
+                    placeholder="Escreva o nome da especialidade que deseja..." 
+                    aria-label="Escreva o nome da especialidade que deseja..."/>
+                </div>
+            </div>       -->
+            <!--<div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="find-medico" >Medico</label>
+                    <input id="find-medico" 
+                    [(ngModel)]="medico"
+                    class="form-control"       
+                    name="medico"  
+                    placeholder="Escreva o nome do medico que deseja..." 
+                    aria-label="Escreva o nome do medico que deseja..."/>
+                </div>
+            </div>-->   
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="find-credenciado" >Credenciado</label>
                     <input id="find-credenciado" 
                     [(ngModel)]="credenciado"
                     class="form-control"       
-                    name="medico"  
+                    name="credenciado"  
                     placeholder="Escreva o nome do credenciado que deseja..." 
                     aria-label="Escreva o nome do credenciado que deseja..."/>
                 </div>
@@ -53,10 +75,10 @@
             </tr>
         </thead>
         <tbody>
-            <!-- | filtroCredenciado : medico 
-                    | filtroCredenciado : especialidade-->
+            <!-- -->
             <tr *ngFor="let credenciado of credenciados 
                     | filtroCredenciado: credenciado
+                    | filtroCredenciado : medico 
                     | paginate: { 
                         id: 'paginator-credenciados',
                         itemsPerPage: qtdItens,
@@ -64,10 +86,10 @@
                         totalItems: total} 
                      ">
                 <td>
-                    {{credenciado.descricao}}
+                    {{credenciado.Descricao}}
                 </td>
                 <td>
-                    {{credenciado.endereco}}
+                    {{credenciado.Endereco}}
                 </td>
                 <td>
                     <button class="btn btn-primary" (click)="gotoAgendamentos(credenciado)">

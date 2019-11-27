@@ -17,25 +17,23 @@ export class AgendamentoService {
 	}
 	
 	httpOptions = {
-	  //headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+	  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 	};
 	
 	public listaAgendamentos(): Observable<any>{
-	/*	return this.http.get<any[]>(this.url+ '/agendamentos')
+		return this.http.get<any[]>(this.url+ '/agendamentos')
 		.pipe(
 			retry(1),
 			catchError(this.errorHandler)
-		);*/
-		return of(AGENDAMENTOS);
+		);
 	}
 	
 	public agendar(agendamento: any, matricula: string): Observable<any>{
-		/*return this.http.post<Agendamento>(this.url+ '/agendar/', agendamento, this.httpOptions)
+		return this.http.post<Agendamento>(this.url+ '/agendar/', agendamento, this.httpOptions)
 		.pipe(
 			retry(1),
 			catchError(this.errorHandler)
-		);*/		
-		return of(AGENDAMENTOS)
+		);
 	}
 
 	errorHandler(error) {

@@ -3,7 +3,7 @@ import { environment } from '../../../environments/environment';
 import { Medico } from '../../shared/models/medico.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Subscriber, of } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { filter, find } from 'rxjs/operators';
 import { Credenciado } from 'src/app/shared/models/credenciado.model';
 import { MEDICOS } from '../agendamento/mock.medico';
 import { CREDENCIADOS } from '../credenciado/mock.credenciado';
@@ -29,9 +29,9 @@ export class ListaComboService {
 		//return of(MEDICOS);
 	}
 
-	public listaCredenciados(): Observable<any>{
-		return this.http.get<Credenciado[]>(this.url+ '/credenciados');
+	public listaCredenciados(id?: string): Observable<any>{
+		return this.http.get<Credenciado[]>(this.url+ '/credenciados');		
 		//return of(CREDENCIADOS);
 	}
 	
-}
+};

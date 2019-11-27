@@ -20,7 +20,7 @@ export class AgendamentoComponent implements OnInit {
 
   public matricula: string;
   public qtdItens = 3;
-  public credenciado = "";
+  public credenciado : Credenciado = new Credenciado() ;
   public cabecalho: string[] = ['Data', 'Horario', 'Especialidade', 'Medico', ''];
 
   // MOCK DATA LIST
@@ -42,8 +42,15 @@ export class AgendamentoComponent implements OnInit {
 
   ngOnInit() {
     this.matricula = localStorage.getItem('matricula');
+    
     this.activeRoute.paramMap.subscribe( params => {
-      this.credenciado = params.get("id");
+      let id = params.get("id");   
+      this.listaComboService.listaCredenciados(id).subscribe(retorno => {
+        retorno.map(credenciado => {if(credenciado.Codigo == id){
+          this.credenciado = credenciado;
+        }});
+      });
+      
     })
 
     this.carregarMedicos();
@@ -53,25 +60,19 @@ export class AgendamentoComponent implements OnInit {
   public carregarMedicos(): void{
     this.listaComboService.listaMedicos()
     .subscribe( retorno => {
-      this.medicos = retorno.map(medico => new Medico(medico.id, medico.nome));
+      this.medicos = retorno.map(medico => Medico.getMedico(medico));
     })
   }
 
   public carregarAgendamentos(): void{
     this.agendamentoService.listaAgendamentos()
       .subscribe( retorno => {
-        this.agendamentos = retorno.map( obj => new Agendamento ( obj.id,
-                                                    obj.matricula,
-                                                    obj.credenciado,
-                                                    obj.data,
-                                                    obj.horaInicio,
-                                                    obj.horaFim,
-                                                    '',
-                                                    obj.especialidade,
-                                                    this.medicos.find(medico => medico.id == obj.medico).nome,))
-                                    .filter(retorno => retorno.matricula == '')
-                                    
-                                
+        this.agendamentos = retorno
+          .map( agendamento => {
+            if(agendamento.Clinica === this.credenciado.Descricao) {
+              Agendamento.getAgendamento(agendamento)                                                                 
+          }
+        })
       }, err => {
         this.agendamentos = []
       })
@@ -86,8 +87,7 @@ export class AgendamentoComponent implements OnInit {
   {
     this.agendamentoService.agendar(agendamento, this.matricula)
       .subscribe(retorno => {
-        console.log(retorno);
-        console.log('Sucesso!');
+        this.agendamentos = [...this.agendamentos];
       }, err => {
         console.log('Falhou!');
       });
