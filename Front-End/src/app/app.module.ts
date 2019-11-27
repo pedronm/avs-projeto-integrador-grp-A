@@ -27,7 +27,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     LayoutModule,
     NgxMaskModule.forRoot(options),
     SharedModule,
-    ToastrModule 
+    ToastrModule.forRoot() 
   ],
   exports: [    
   ],

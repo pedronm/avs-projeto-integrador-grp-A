@@ -6,6 +6,7 @@ import { AgendamentoService } from '../services/agendamento.service';
 import { ListaComboService } from '../services/lista.combo.service';
 import { Medico } from 'src/app/shared/models/medico.model';
 import { Credenciado } from 'src/app/shared/models/credenciado.model';
+import { ToastrService } from 'ngx-toastr';
 
 declare var $: any;
 
@@ -38,7 +39,9 @@ export class AgendamentoComponent implements OnInit {
   constructor(private router: Router, 
               private activeRoute: ActivatedRoute ,
               private agendamentoService: AgendamentoService,
-              private listaComboService: ListaComboService) { }
+              private listaComboService: ListaComboService,
+              private toastr: ToastrService
+              ) { }
 
   ngOnInit() {
     this.matricula = localStorage.getItem('matricula');
@@ -65,16 +68,21 @@ export class AgendamentoComponent implements OnInit {
   }
 
   public carregarAgendamentos(): void{
+    let agendamentos: Agendamento[] = [];
     this.agendamentoService.listaAgendamentos()
       .subscribe( retorno => {
-        this.agendamentos = retorno
-          .map( agendamento => {
-            if(agendamento.Clinica === this.credenciado.Descricao) {
-              Agendamento.getAgendamento(agendamento)                                                                 
-          }
-        })
+         agendamentos = retorno.map( agendamento => {
+            if(new String(this.credenciado.Descricao).valueOf() == new String(agendamento.Clinica).valueOf()) {            
+              Agendamento.getAgendamento(agendamento);
+            }          
+        });
       }, err => {
         this.agendamentos = []
+      }, () => {
+        if(!agendamentos)
+          this.agendamentos = [];
+        else
+          this.agendamentos = agendamentos;
       })
       
   }
@@ -87,10 +95,18 @@ export class AgendamentoComponent implements OnInit {
   {
     this.agendamentoService.agendar(agendamento, this.matricula)
       .subscribe(retorno => {
+        this.msgSucesso("Agendado!");
         this.agendamentos = [...this.agendamentos];
       }, err => {
-        console.log('Falhou!');
+        this.msgErro("Falha ao concluir o agendamento...");
       });
   }
 
+  private msgSucesso(msg): void{
+    this.toastr.success(msg, "Sucesso");
+  }
+  
+  private msgErro(msg): void{
+    this.toastr.error(msg, "Erro");
+  }
 }
